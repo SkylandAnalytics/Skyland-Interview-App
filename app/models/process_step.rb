@@ -1,0 +1,2 @@
+class ProcessStep < ApplicationRecord
+end

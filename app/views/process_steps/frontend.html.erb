@@ -1,0 +1,19 @@
+<div>
+  <pre id="json"></pre>
+  <div id="barcode"></div>
+</div>
+
+
+<script>
+var process_steps = <%= raw @process_steps.to_json %>;
+
+document.getElementById("json").innerHTML = JSON.stringify(process_steps, undefined, 2);
+
+$(document).ready(function() {
+    $("#barcode").kendoBarcode({
+        value:"1234567",
+        type:"ean8"
+    });
+});
+
+</script>
