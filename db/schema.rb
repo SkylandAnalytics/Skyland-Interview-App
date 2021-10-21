@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_030206) do
+ActiveRecord::Schema.define(version: 2021_10_21_232822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "parameters", force: :cascade do |t|
+    t.float "measurement"
+    t.bigint "process_step_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["process_step_id"], name: "index_parameters_on_process_step_id"
+  end
 
   create_table "process_steps", force: :cascade do |t|
     t.string "name"
@@ -23,4 +31,5 @@ ActiveRecord::Schema.define(version: 2021_10_21_030206) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "parameters", "process_steps"
 end
