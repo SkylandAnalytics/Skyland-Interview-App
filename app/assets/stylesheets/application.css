@@ -40,6 +40,10 @@ svg {
     border-bottom: 1px solid black;
 }
 
+.k-header{
+        background-color: lightblue;
+      }
+
 #grid {
     width: 60%;
 }
