@@ -40,12 +40,16 @@ svg {
     border-bottom: 1px solid black;
 }
 
-.k-header{
-        background-color: lightblue;
-      }
-
 #grid {
     width: 60%;
+}
+
+.k-header{
+    background-color: lightblue;
+}
+
+.k-alt {
+   background-color: lightyellow;
 }
 
 #json-container {
