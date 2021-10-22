@@ -7,13 +7,27 @@ class ProcessStepsController < ApplicationController
     @process_step = ProcessStep.find(params[:id])
   end
 
+  def new
+  end
+
+  def create
+    process_step = ProcessStep.create(name: params[:name], description: params[:description], position: params[:position])
+
+    if process_step.save
+      redirect_to "/process_steps/#{process_step.id}/parameters/new"
+    else
+      flash[:error] = process_step.errors.full_messages.join(', ')
+      render :new
+    end
+  end
+
   def edit
     @process_step = ProcessStep.find(params[:id])
   end
 
   def update
     @process_step = ProcessStep.find(params[:id])
-    require 'pry';binding.pry
+
     if @process_step.update(process_step_params)
       redirect_to "/process_steps/#{@process_step.id}"
     else

@@ -3,6 +3,8 @@
     <li><%= link_to process_step.name, process_step_path(process_step)  %></li>
     <li><%= process_step.description %></li>
     <li><%= process_step.position %></li>
-    <p><%= link_to "Delete #{process_step.name}", "/process_steps/#{process_step.id}", method: :delete %></p>
+    <li><%= link_to "Delete #{process_step.name}", "/process_steps/#{process_step.id}", method: :delete %></li>
   <% end %>
+
+  <%= link_to "Create New Process Step", "/process_steps/new", method: :get %>
 </ul>
