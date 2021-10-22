@@ -21,7 +21,7 @@ class ParametersController < ApplicationController
         render :new
       end
 
-    elsif params[:measurement].to_f > process_step.parameters.last.measurement.to_i
+    elsif process_step.measurement_greater_than_last?(params[:measurement])
       parameter = Parameter.create(measurement: params[:measurement].to_f, process_step_id: process_step.id)
 
       if parameter.save

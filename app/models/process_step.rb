@@ -9,6 +9,6 @@ class ProcessStep < ApplicationRecord
   end
 
   def measurement_greater_than_last?(measurement)
-    measurement > self.parameters.last.measurement.to_f
+    measurement.to_f > self.parameters.last.measurement
   end
 end
