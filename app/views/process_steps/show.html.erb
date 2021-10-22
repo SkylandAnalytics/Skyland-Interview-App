@@ -5,3 +5,4 @@
   <p><%= parameter.measurement %></p>
 <% end %>
 <%= link_to "Update #{@process_step.name}", "/process_steps/#{@process_step.id}/edit", method: :get %>
+<p><%= link_to "Create Parameter", "/process_steps/#{@process_step.id}/parameters/new", method: :get %></p>
