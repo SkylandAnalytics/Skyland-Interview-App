@@ -57,10 +57,11 @@ class ParametersController < ApplicationController
 
   def destroy
     @parameter = Parameter.find(params[:id])
-    @parameter.delete
+    @parameter.destroy
 
     respond_to do |format|
-      format.js
+      format.js 
+      format.html
     end
 
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
