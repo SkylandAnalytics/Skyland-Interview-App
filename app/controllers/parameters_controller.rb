@@ -27,4 +27,9 @@ class ParametersController < ApplicationController
       flash[:error] = "Measurement must be greater than #{process_step.parameters.last.measurement}"
     end
   end
+
+  def destroy
+    parameter = Parameter.find(params[:id])
+    parameter.delete
+    redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
 end

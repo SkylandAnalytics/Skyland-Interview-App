@@ -3,6 +3,7 @@
 <p>Position: <%= @process_step.position %></p>
 <p>Measurements: <% @process_step.parameters.each do |parameter| %></p>
   <p><%= parameter.measurement %></p>
+  <p><%= link_to "Delete #{parameter.measurement}", "/process_steps/#{process_step.id}/parameters/#{parmeter.id}", method: :delete %></p>
 <% end %>
 <%= link_to "Update #{@process_step.name}", "/process_steps/#{@process_step.id}/edit", method: :get %>
 <p><%= link_to "Create Parameter", "/process_steps/#{@process_step.id}/parameters/new", method: :get %></p>
