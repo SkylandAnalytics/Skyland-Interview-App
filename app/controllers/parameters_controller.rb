@@ -12,7 +12,7 @@ class ParametersController < ApplicationController
   def create
     process_step = ProcessStep.find(params[:process_step_id])
 
-    if process_step.parameters.last.nil?
+    if process_step.no_params?
       parameter = Parameter.create(measurement: params[:measurement].to_f, process_step_id: process_step.id)
 
       if parameter.save

@@ -24,7 +24,7 @@ RSpec.describe ProcessStep do
       process_step = ProcessStep.create!(name: 'First', description: 'Description of First step', position: 1)
       process_step.parameters.create!(measurement: 4.7)
 
-      expect(process_step.measurement_greater_than_last(13.0)).to eq(true)
+      expect(process_step.measurement_greater_than_last?(13.0)).to eq(true)
     end
   end
 end
