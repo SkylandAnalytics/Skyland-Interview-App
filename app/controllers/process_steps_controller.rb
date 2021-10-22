@@ -22,6 +22,14 @@ class ProcessStepsController < ApplicationController
     end
   end
 
+  def destroy
+    process_step = ProcessStep.find(params[:id])
+
+    process_step.destroy
+
+    redirect_to('/process_steps')
+  end
+
 
   def frontend
     @process_steps = ProcessStep.all
