@@ -1,5 +1,6 @@
 <h1><%= @process_step.name %></h1>
 <% @parameters.each do |param| %>
   <p><%= param.measurement %></p>
+  <p><%= link_to 'Edit Parameter', "/process_steps/#{@process_step.id}/parameters/#{param.id}/edit", method: :get %></p>
   <p><%= link_to "Delete #{param.measurement}", "/process_steps/#{@process_step.id}/parameters/#{param.id}", method: :delete %></p>
 <% end %>

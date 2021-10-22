@@ -28,7 +28,6 @@ class ProcessStepsController < ApplicationController
 
   def update
     @process_step = ProcessStep.find(params[:id])
-    binding.pry
     if @process_step.update(process_step_params)
       redirect_to "/process_steps/#{@process_step.id}"
     else

@@ -1,4 +1,4 @@
-<%= form_with url: "/process_steps/#{@process_step_id}/parameters", method: :post, local: true do |f| %>
+<%= form_for [@process_step, @parameter], method: :post, local: true do |f| %>
   <%= f.label :measurement, "Measurement: " %>
   <%= f.number_field :measurement, step: :any %>
 
