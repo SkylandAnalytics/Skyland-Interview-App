@@ -24,7 +24,7 @@ class ParametersController < ApplicationController
         flash[:error] = parameter.errors.full_messages.join(', ')
       end
 
-    elsif process_step.measurement_greater_than_last?(params[:measurement])
+    elsif process_step.measurement_less_than_last?(params[:measurement])
       parameter = Parameter.create(parameter_params)
 
       if parameter.save
@@ -33,7 +33,7 @@ class ParametersController < ApplicationController
 
     else
       redirect_to error_route
-      flash[:error] = "Measurement must be greater than #{process_step.last_measurement}"
+      flash[:error] = "Measurement must be less than #{process_step.last_measurement}"
     end
   end
 

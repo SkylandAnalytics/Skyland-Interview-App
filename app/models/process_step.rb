@@ -8,8 +8,8 @@ class ProcessStep < ApplicationRecord
     .nil?
   end
 
-  def measurement_greater_than_last?(measurement)
-    measurement.to_f > self.parameters.last.measurement
+  def measurement_less_than_last?(measurement)
+    measurement.to_f < self.parameters.last.measurement
   end
 
   def last_measurement
