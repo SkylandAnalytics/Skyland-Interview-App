@@ -33,7 +33,7 @@ class ParametersController < ApplicationController
 
     else
       redirect_to error_route
-      flash[:error] = "Measurement must be greater than #{process_step.parameters.last.measurement}"
+      flash[:error] = "Measurement must be greater than #{process_step.last_measurement}"
     end
   end
 
