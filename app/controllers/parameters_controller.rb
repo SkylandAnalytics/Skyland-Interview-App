@@ -59,6 +59,10 @@ class ParametersController < ApplicationController
     @parameter = Parameter.find(params[:id])
     @parameter.delete
 
+    respond_to do |format|
+      format.js
+    end
+
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
   end
 
