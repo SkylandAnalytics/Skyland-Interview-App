@@ -8,6 +8,7 @@ class ProcessStepsController < ApplicationController
   end
 
   def new
+    @process_step = ProcessStep.new
   end
 
   def create
@@ -27,7 +28,7 @@ class ProcessStepsController < ApplicationController
 
   def update
     @process_step = ProcessStep.find(params[:id])
-
+    binding.pry
     if @process_step.update(process_step_params)
       redirect_to "/process_steps/#{@process_step.id}"
     else
@@ -57,6 +58,6 @@ class ProcessStepsController < ApplicationController
 
   private
     def process_step_params
-      params.permit(:name, :position, :description)
+      params.require(:process_step).permit(:name, :position, :description)
     end
 end

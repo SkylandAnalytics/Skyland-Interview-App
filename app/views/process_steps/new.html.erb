@@ -1,4 +1,4 @@
-<%= form_with url: '/process_steps', method: :post, local: true do |f| %>
+<%= form_with model: @process_step, method: :post, local: true do |f| %>
   <%= f.label :name, 'Name: ' %>
   <%= f.text_field :name %>
 

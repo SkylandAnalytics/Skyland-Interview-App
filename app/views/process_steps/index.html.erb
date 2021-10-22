@@ -3,8 +3,15 @@
     <li><%= link_to process_step.name, process_step_path(process_step)  %></li>
     <li><%= process_step.description %></li>
     <li><%= process_step.position %></li>
+    <tbody>
+    <%- process_step.parameters.each do |param| %>
+    <tr>
+      <td><%= param.measurement %></td>
+      <td><%= link_to 'Destroy', "/process_steps/#{process_step.id}/parameters/#{param.id}", method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" %></td>
+    </tr>
+    <% end %>
+  </tbody>
     <li><%= link_to "Delete #{process_step.name}", "/process_steps/#{process_step.id}", method: :delete %></li>
   <% end %>
-
   <%= link_to "Create New Process Step", "/process_steps/new", method: :get %>
 </ul>

@@ -38,8 +38,14 @@ class ParametersController < ApplicationController
   end
 
   def destroy
-    parameter = Parameter.find(params[:id])
-    parameter.delete
+    @parameter = Parameter.find(params[:id])
+    @parameter.delete
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to '/process_steps' }
+      format.json { head :no_content }
+    end
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
   end
 
