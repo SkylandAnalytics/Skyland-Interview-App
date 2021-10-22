@@ -27,4 +27,13 @@ RSpec.describe ProcessStep do
       expect(process_step.measurement_greater_than_last?(13.0)).to eq(true)
     end
   end
+
+  describe '#last_measurement' do
+    it 'returns the last parameters measurement for a given process_step' do
+      process_step = ProcessStep.create!(name: 'First', description: 'Description of First step', position: 1)
+      process_step.parameters.create!(measurement: 4.7)
+
+      expect(process_step.last_measurement).to eq(4.7)
+    end
+  end
 end
