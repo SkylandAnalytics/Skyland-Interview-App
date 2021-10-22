@@ -1,17 +1,16 @@
 class ParametersController < ApplicationController
-  def index
-    @process_step = ProcessStep.find(params[:process_step_id])
+  before_action :find_process_step, only: [:index, :new, :create, :edit]
+  before_action :find_parameter, only: [:update, :destroy, :edit]
 
+  def index
     @parameters = @process_step.parameters
   end
 
   def new
-    @process_step = ProcessStep.find(params[:process_step_id])
     @parameter = Parameter.new
   end
 
   def create
-    @process_step = ProcessStep.find(params[:process_step_id])
     error_route = "/process_steps/#{@process_step.id}/parameters/new"
     success_route = "/process_steps/#{@process_step.id}"
 
@@ -39,12 +38,9 @@ class ParametersController < ApplicationController
   end
 
   def edit
-    @parameter = Parameter.find(params[:id])
-    @process_step = @parameter.process_step
   end
 
   def update
-    @parameter = Parameter.find(params[:id])
     @process_step_id = @parameter.process_step.id
 
     if @parameter.update(parameter_params)
@@ -56,20 +52,27 @@ class ParametersController < ApplicationController
   end
 
   def destroy
-    @parameter = Parameter.find(params[:id])
     @parameter.destroy
 
     respond_to do |format|
-      format.js 
-      format.html
-    end
-
+      format.js
+      format.html {
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
+    }
+    end
   end
 
   private
 
   def parameter_params
     params.require(:parameter).permit(:measurement)
+  end
+
+  def find_process_step
+    @process_step = ProcessStep.find(params[:process_step_id])
+  end
+
+  def find_parameter
+    @parameter = Parameter.find(params[:id])
   end
 end
