@@ -1,0 +1,6 @@
+<h1><%= @process_step.name %></h1>
+<p><%= @process_step.description %></p>
+<p>Position: <%= @process_step.position %></p>
+<p>Measurements: <% @process_step.parameters.each do |parameter| %></p>
+  <p><%= parameter.measurement %></p>
+<% end %>
