@@ -17,4 +17,5 @@ RSpec.describe ProcessStep do
 
       expect(process_step.no_params?).to eq(true)
     end
+  end
 end
