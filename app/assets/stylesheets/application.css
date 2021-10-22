@@ -26,6 +26,24 @@ svg {
     display: block;
 }
 
+#grid-container,
+#json-container,
+#barcode-container {
+    padding: 2rem;
+}
+
+#grid-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;   
+    border-bottom: 1px solid black;
+}
+
 #grid {
     width: 60%;
+}
+
+#json-container {
+    border-bottom: 1px solid black;    
 }
