@@ -1,4 +1,10 @@
 class ParametersController < ApplicationController
+  def index
+    @process_step = ProcessStep.find(params[:process_step_id])
+
+    @parameters = @process_step.parameters
+  end
+
   def new
     @process_step_id = params[:process_step_id]
   end
@@ -32,4 +38,5 @@ class ParametersController < ApplicationController
     parameter = Parameter.find(params[:id])
     parameter.delete
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
+  end
 end
