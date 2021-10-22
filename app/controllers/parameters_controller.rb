@@ -52,11 +52,9 @@ class ParametersController < ApplicationController
 
   def destroy
     @parameter.destroy
-
+    
     respond_to do |format|
-      format.js {
-        render 'destroy.js.erb'
-      }
+      format.js
       format.html {
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
     }
