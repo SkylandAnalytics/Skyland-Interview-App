@@ -1,12 +1,14 @@
+<%= link_to "Create New Process Step", "/process_steps/new", method: :get %>
 <% @process_steps.each do |process_step| %>
     <hr>
-    <h3><%= link_to process_step.name, process_step_path(process_step)  %></h3>
-    <p>Description: <%= process_step.description %></p>
-    <p>Position: <%= process_step.position %></p>
+    <h3><%= link_to process_step.name, process_step_path(process_step) %></h3>
+      <p>Description: <%= process_step.description %></p>
+      <p>Position: <%= process_step.position %></p>
     <h4>Measurements: <%- process_step.parameters.each do |param| %></h4>
-      <p><%= param.measurement %></p>
-      <%= link_to 'Destroy', [process_step, param], method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "deleteParameter" %>
+      <tr>
+        <p><%= param.measurement %></p>
+      <%= link_to 'Destroy Measurement', [process_step, param], method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "deleteParameter" %>
+      </tr>
     <% end %>
     <p><%= link_to "Delete #{process_step.name}", "/process_steps/#{process_step.id}", method: :delete %></p>
   <% end %>
-  <%= link_to "Create New Process Step", "/process_steps/new", method: :get %>

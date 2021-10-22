@@ -12,23 +12,22 @@ class ParametersController < ApplicationController
 
   def create
     error_route = "/process_steps/#{@process_step.id}/parameters/new"
-    success_route = "/process_steps/#{@process_step.id}"
 
     if @process_step.no_params?
       parameter = @process_step.parameters.create(parameter_params)
 
       if parameter.save
-        redirect_to success_route
+        redirect_to @process_step
       else
         redirect_to error_route
         flash[:error] = parameter.errors.full_messages.join(', ')
       end
 
-    elsif @process_step.measurement_less_than_last?(params[:measurement])
+    elsif @process_step.measurement_less_than_last?(params[:parameter][:measurement])
       parameter = @process_step.parameters.create(parameter_params)
 
       if parameter.save
-        redirect_to success_route
+        redirect_to @process_step
       end
 
     else
@@ -55,7 +54,9 @@ class ParametersController < ApplicationController
     @parameter.destroy
 
     respond_to do |format|
-      format.js 
+      format.js {
+        render 'destroy.js.erb'
+      }
       format.html {
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
     }
