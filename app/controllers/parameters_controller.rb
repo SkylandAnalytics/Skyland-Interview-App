@@ -10,23 +10,6 @@ class ParametersController < ApplicationController
     @parameter = Parameter.new
   end
 
-  def edit
-    @parameter = Parameter.find(params[:id])
-    @process_step = @parameter.process_step
-  end
-
-  def update
-    @parameter = Parameter.find(params[:id])
-    @process_step_id = @parameter.process_step.id
-
-    if @parameter.update(parameter_params)
-      redirect_to "/process_steps/#{@process_step_id}/parameters"
-    else
-      render :edit
-      flash[:alert] = "Error: #{@parameter.errors.full_messages}"
-    end
-  end
-
   def create
     @process_step = ProcessStep.find(params[:process_step_id])
     error_route = "/process_steps/#{@process_step.id}/parameters/new"
@@ -52,6 +35,23 @@ class ParametersController < ApplicationController
     else
       redirect_to error_route
       flash[:error] = "Measurement must be less than #{@process_step.last_measurement}"
+    end
+  end
+
+  def edit
+    @parameter = Parameter.find(params[:id])
+    @process_step = @parameter.process_step
+  end
+
+  def update
+    @parameter = Parameter.find(params[:id])
+    @process_step_id = @parameter.process_step.id
+
+    if @parameter.update(parameter_params)
+      redirect_to "/process_steps/#{@process_step_id}/parameters"
+    else
+      render :edit
+      flash[:alert] = "Error: #{@parameter.errors.full_messages}"
     end
   end
 
