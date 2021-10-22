@@ -1,8 +1,18 @@
-<div>
-  <pre id="json"></pre>
-  <div id="barcode"></div>
-</div>
+<% content_for :css do
+    stylesheet_link_tag 'application'
+end %>
 
+<div>
+  <div id="grid-container">
+    <div id="grid"></div>
+  </div>
+  <div id="json-container">  
+    <pre id="json"></pre>
+  </div>
+  <div id="barcode-container">    
+    <div id="barcode"></div>
+  </div>
+</div>
 
 <script>
 var process_steps = <%= raw @process_steps.to_json %>;
@@ -10,6 +20,11 @@ var process_steps = <%= raw @process_steps.to_json %>;
 document.getElementById("json").innerHTML = JSON.stringify(process_steps, undefined, 2);
 
 $(document).ready(function() {
+  $('#grid').kendoGrid({
+    dataSource: {
+      data: process_steps,
+    }
+  })
     $("#barcode").kendoBarcode({
         value:"1234567",
         type:"ean8"
