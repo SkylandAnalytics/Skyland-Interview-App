@@ -1,3 +1,7 @@
+<% content_for :css do
+    stylesheet_link_tag 'application'
+end %>
+
 <div>
   <div id="grid"></div>
   <pre id="json"></pre>
@@ -15,6 +19,8 @@ $(document).ready(function() {
     dataSource: {
       data: process_steps,
     }
+
+
   })
     $("#barcode").kendoBarcode({
         value:"1234567",

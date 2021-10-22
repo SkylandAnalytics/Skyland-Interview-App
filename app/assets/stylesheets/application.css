@@ -25,3 +25,7 @@ svg {
     margin: auto;
     display: block;
 }
+
+#grid {
+    width: 60%;
+}
