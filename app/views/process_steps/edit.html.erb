@@ -1,0 +1,12 @@
+<%= form_with url: "/process_steps/#{@process_step.id}", method: :patch, local: true do |f| %>
+  <%= f.label :name, 'Name: ' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description, 'Description: ' %>
+  <%= f.text_field :description %>
+
+  <%= f.label :position, 'Position: ' %>
+  <%= f.text_field :position %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

@@ -46,6 +46,8 @@ gem 'bootstrap-generators'
 # css and js framework
 gem 'bootstrap-sass'
 
+gem 'pry'
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

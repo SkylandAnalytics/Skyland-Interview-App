@@ -4,3 +4,4 @@
 <p>Measurements: <% @process_step.parameters.each do |parameter| %></p>
   <p><%= parameter.measurement %></p>
 <% end %>
+<%= link_to "Update #{@process_step.name}", "/process_steps/#{@process_step.id}/edit", method: :get %>
