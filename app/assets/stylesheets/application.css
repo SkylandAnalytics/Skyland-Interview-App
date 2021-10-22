@@ -36,7 +36,7 @@ svg {
     align-items: center;
     display: flex;
     flex-direction: column;
-    text-align: center;   
+    text-align: center;
     border-bottom: 3px solid lightblue;
     position: relative;
 
@@ -46,6 +46,7 @@ svg {
     width: 60%;
     border: 3px solid black;
     font-size: .85rem;
+    font-family: Arial !important;    
 }
 
 .k-header{
@@ -54,6 +55,7 @@ svg {
     font-size: 1.3rem;
     height: 1.5rem;
     border-bottom: 3px solid black !important;
+    text-align: center !important;
 }
 
 .k-alt {
