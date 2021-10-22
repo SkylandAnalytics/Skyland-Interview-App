@@ -31,7 +31,7 @@ class ParametersController < ApplicationController
     @process_step = ProcessStep.find(params[:process_step_id])
     error_route = "/process_steps/#{@process_step.id}/parameters/new"
     success_route = "/process_steps/#{@process_step.id}"
-    binding.pry
+
     if @process_step.no_params?
       parameter = @process_step.parameters.create(parameter_params)
 
@@ -51,7 +51,7 @@ class ParametersController < ApplicationController
 
     else
       redirect_to error_route
-      flash[:error] = "Measurement must be less than #{process_step.last_measurement}"
+      flash[:error] = "Measurement must be less than #{@process_step.last_measurement}"
     end
   end
 
@@ -59,11 +59,6 @@ class ParametersController < ApplicationController
     @parameter = Parameter.find(params[:id])
     @parameter.delete
 
-    respond_to do |format|
-      format.js
-      format.html { redirect_to '/process_steps' }
-      format.json { head :no_content }
-    end
     redirect_to "/process_steps/#{params[:process_step_id]}/parameters"
   end
 
