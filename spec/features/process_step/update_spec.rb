@@ -16,7 +16,7 @@ RSpec.describe 'Process Step Udpate' do
 
     expect(current_path).to eq("/process_steps/#{@process_step_1.id}/edit")
 
-    fill_in :description, with: 'New Description'
+    fill_in :process_step_description, with: 'New Text'
 
     click_on('Submit')
 

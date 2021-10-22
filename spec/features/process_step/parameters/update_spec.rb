@@ -14,7 +14,9 @@ RSpec.describe 'Process Steps Parameters Update' do
 
     click_on 'Edit Parameter'
 
-    fill_in :measurement, with: 4.5
+    fill_in :parameter_measurement, with: 4.5
+
+    click_on 'Submit'
 
     expect(page).to have_content(4.5)
     expect(page).to_not have_content(4.7)

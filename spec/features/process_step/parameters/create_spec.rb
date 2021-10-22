@@ -11,12 +11,12 @@ RSpec.describe 'Process Step Parameters Create' do
 
     click_on 'Create Parameter'
 
-    fill_in :measurement, with: 13.0
+    fill_in :parameter_measurement, with: 4.0
 
     click_on 'Submit'
 
-    expect(current_path).to eq("process_steps/#{@process_step_1.id}")
+    expect(current_path).to eq("/process_steps/#{@process_step_1.id}")
 
-    expect(page).to have_content(13.0)
+    expect(page).to have_content(4.0)
   end
 end

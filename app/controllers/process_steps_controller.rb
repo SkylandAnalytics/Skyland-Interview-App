@@ -1,6 +1,6 @@
 class ProcessStepsController < ApplicationController
   before_action :find_process_step, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @process_steps = ProcessStep.all
   end
@@ -41,15 +41,15 @@ class ProcessStepsController < ApplicationController
     redirect_to('/process_steps')
   end
 
-  def frontend
-    @process_steps = ProcessStep.all
-    respond_to do |format|
-      format.js {
-        render :frontend
-      }
-      format.html
-    end
-  end
+  # def frontend
+  #   @process_steps = ProcessStep.all
+  #   respond_to do |format|
+  #     format.js {
+  #       render :frontend
+  #     }
+  #     format.html
+  #   end
+  # end
 
   private
     def process_step_params

@@ -6,15 +6,15 @@ RSpec.describe 'Process Step Create' do
 
     click_on('Create New Process Step')
 
-    fill_in :name, with: 'Test'
-    fill_in :description, with: 'Test'
-    fill_in :position, with: 'Test'
+    fill_in :process_step_name, with: 'Test'
+    fill_in :process_step_description, with: 'Test'
+    fill_in :process_step_position, with: 1
 
     click_on('Submit')
 
-    expect(cureent_path).to eq('/parameters/new')
+    expect(current_path).to eq("/process_steps/#{ProcessStep.last.id}/parameters/new")
 
-    fill_in :measurement, with: 4.5
+    fill_in :parameter_measurement, with: 4.5
 
     click_on 'Submit'
 
