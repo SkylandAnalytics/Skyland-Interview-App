@@ -37,22 +37,29 @@ svg {
     display: flex;
     flex-direction: column;
     text-align: center;   
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid lightblue;
+    position: relative;
+
 }
 
 #grid {
     width: 60%;
+    border: 3px solid black;
+    font-size: .85rem;
 }
 
 .k-header{
     background-color: lightblue;
+    font-weight: bold !important;
     font-size: 1.3rem;
+    height: 1.5rem;
+    border-bottom: 3px solid black !important;
 }
 
 .k-alt {
-   background-color: lightyellow;
+    background-color: lightyellow;
 }
 
 #json-container {
-    border-bottom: 1px solid black;    
+    border-bottom: 3px solid lightblue;
 }

@@ -14,7 +14,6 @@ end %>
   </div>
 </div>
 
-
 <script>
 var process_steps = <%= raw @process_steps.to_json %>;
 
@@ -25,8 +24,6 @@ $(document).ready(function() {
     dataSource: {
       data: process_steps,
     }
-
-
   })
     $("#barcode").kendoBarcode({
         value:"1234567",
