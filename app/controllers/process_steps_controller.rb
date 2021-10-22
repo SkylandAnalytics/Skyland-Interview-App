@@ -11,7 +11,7 @@ class ProcessStepsController < ApplicationController
   end
 
   def create
-    process_step = ProcessStep.create(name: params[:name], description: params[:description], position: params[:position])
+    process_step = ProcessStep.create(process_step_params)
 
     if process_step.save
       redirect_to "/process_steps/#{process_step.id}/parameters/new"
@@ -57,6 +57,6 @@ class ProcessStepsController < ApplicationController
 
   private
     def process_step_params
-      params.require(:process_step).permit(:name, :position, :description)
+      params.permit(:name, :position, :description)
     end
 end
