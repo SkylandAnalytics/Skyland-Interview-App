@@ -3,9 +3,10 @@
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Description</th>
+        <th scope="col" class="col col-lg-4">Description</th>
         <th scope="col">Position</th>
         <th scope="col">Measurements</th>
+        <th scope="col">Add Measurement</th>
       </tr>
 
       <% @process_steps.each do |process_step| %>
@@ -15,7 +16,14 @@
           <td><%= process_step.position %></td>
 
           <td><% process_step.parameters.each do |parameter| %>
-            <%= parameter.measurement %><%="," if parameter != process_step.parameters[-1] %>
+            <%= parameter.measurement.round(1) %><%="," if parameter != process_step.parameters[-1] %>
+            <% end %>
+            </td>
+          <td>
+
+            <%= form_with url: "/process_steps/#{process_step.id}/parameters", method: :post, local: true do |f| %>
+              <%= f.number_field :measurement, step: :any %>
+              <%= f.submit 'Add' %>
             <% end %>
 
           </td>
@@ -24,4 +32,8 @@
 
     </thead>
     <tbody>
+
+      <a href="/process_steps/new" class="btn btn-success" role="button">Create Processs Step</a>
+
+
 </ul>
