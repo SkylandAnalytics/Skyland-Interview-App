@@ -5,6 +5,7 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Position</th>
+        <th scope="col">Measurements</th>
       </tr>
 
       <% @process_steps.each do |process_step| %>
@@ -12,10 +13,15 @@
           <th scope="row"><%= link_to process_step.name, process_step_path(process_step)  %></th>
           <td><%= process_step.description %></td>
           <td><%= process_step.position %></td>
+
+          <td><% process_step.parameters.each do |parameter| %>
+            <%= parameter.measurement %><%="," if parameter != process_step.parameters[-1] %>
+            <% end %>
+
+          </td>
         </tr>
       <% end %>
 
     </thead>
     <tbody>
-
 </ul>
