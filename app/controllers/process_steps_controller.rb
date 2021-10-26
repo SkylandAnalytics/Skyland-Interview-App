@@ -11,10 +11,16 @@ class ProcessStepsController < ApplicationController
   end
 
   def create
-    @process_step = ProcessStep.create(process_step_params)
-    @parameter = Parameter.create(process_step_id: @process_step.id, measurement: @process_step.measurement)
+    @process_step = ProcessStep.new(process_step_params)
+    @process_step.parameters << Parameter.create(process_step_id: @process_step.id, measurement: params[:process_step][:measurement])
 
-    redirect_to process_steps_path
+    if params[:process_step][:measurement].empty?
+      flash[:error] = "Measurement must be present"
+      redirect_to new_process_step_path
+    else
+      @process_step.save
+      redirect_to process_steps_path
+    end
   end
 
   def update
