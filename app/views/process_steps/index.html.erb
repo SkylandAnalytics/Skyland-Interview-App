@@ -1,8 +1,21 @@
 <ul>
-  <% @process_steps.each do |process_step| %>
-    <li><%= link_to process_step.name, process_step_path(process_step)  %></li>
-    <li><%= process_step.description %></li>
-    <li><%= process_step.position %></li>
-  <% end %>
-</ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Position</th>
+      </tr>
 
+      <% @process_steps.each do |process_step| %>
+        <tr>
+          <th scope="row"><%= link_to process_step.name, process_step_path(process_step)  %></th>
+          <td><%= process_step.description %></td>
+          <td><%= process_step.position %></td>
+        </tr>
+      <% end %>
+
+    </thead>
+    <tbody>
+
+</ul>
