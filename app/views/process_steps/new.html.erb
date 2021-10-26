@@ -1,14 +1,13 @@
-<h1>Registed New Process Step</h1>
-
+<h3>New Process Step</h3>
 <%= form_with model: @process_step, local: true do |f|%>
-  <%= f.label :name, "Name: " %>
-  <%= f.text_field :name %><br>
-  <%= f.label :description, "Description: " %>
-  <%= f.text_field :description %><br>
-  <%= f.label :position, "Position: " %>
-  <%= f.text_field :position %><br>
-  <%= f.label :measurement, "Measurement: " %>
-  <%= f.text_field :measurement %><br>
 
+  <%= f.text_field :name %>
+  <%= f.label :name, "Name" %><br>
+  <%= f.text_field :description %>
+  <%= f.label :description, "Description" %><br>
+  <%= f.text_field :position %>
+  <%= f.label :position, "Position" %><br>
+  <%= f.text_field :measurement %>
+  <%= f.label :measurement, "Measurement" %><br>
   <%= f.submit "Save" %>
 <% end %>
