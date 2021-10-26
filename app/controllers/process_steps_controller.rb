@@ -12,18 +12,13 @@ class ProcessStepsController < ApplicationController
 
   def create
     @process_step = ProcessStep.create(process_step_params)
+    @parameter = Parameter.create(process_step_id: @process_step.id, measurement: @process_step.measurement)
 
-    if process_step_params[:name].empty? || process_step_params[:description].empty? || process_step_params[:position].empty? || process_step_params[:measurement].empty?
-      flash[:alert] = "Please fill in all the fields"
-      redirect_to new_process_step_path
-    else
-      @process_step.save
-      redirect_to process_steps_path
-    end
-
+    redirect_to process_steps_path
   end
 
   def update
+
   end
 
   def destroy
