@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_030648) do
+ActiveRecord::Schema.define(version: 2021_10_26_205018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "parameters", force: :cascade do |t|
-    t.integer "measurement"
     t.bigint "process_step_id"
+    t.float "measurement"
     t.index ["process_step_id"], name: "index_parameters_on_process_step_id"
   end
 
