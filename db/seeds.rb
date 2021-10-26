@@ -11,3 +11,9 @@ ProcessStep.create(name: "Process 2", description: "this is a description exampl
 ProcessStep.create(name: "Process 3", description: "this is a description example for the process step model. The process step that this text for is: Process Step 3", position: 3)
 ProcessStep.create(name: "Process 4", description: "this is a description example for the process step model. The process step that this text for is: Process Step 4", position: 4)
 ProcessStep.create(name: "Process 5", description: "this is a description example for the process step model. The process step that this text for is: Process Step 5", position: 5)
+
+FactoryBot.create(:parameter, process_step_id: 6)
+FactoryBot.create(:parameter, process_step_id: 7)
+FactoryBot.create(:parameter, process_step_id: 7)
+FactoryBot.create(:parameter, process_step_id: 8)
+FactoryBot.create(:parameter, process_step_id: 9)
