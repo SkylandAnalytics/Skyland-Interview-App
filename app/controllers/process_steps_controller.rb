@@ -4,6 +4,7 @@ class ProcessStepsController < ApplicationController
   end
 
   def show
+    @process_step = ProcessStep.find(params[:id])
   end
 
   def new
@@ -17,21 +18,21 @@ class ProcessStepsController < ApplicationController
 
     # if all fields are filled out but measurement is missing
     if @process_step.name.present? && @process_step.description.present? && @process_step.position.present? && params[:process_step][:measurement].empty?
-      flash[:error] = "You must fill in measurements"
+      flash[:error] = 'You must fill in measurements'
       redirect_to new_process_step_path
 
     elsif parameter_validator(@parameter) && !@process_step.name.present?
-      flash[:error] = "Please add at least a name"
+      flash[:error] = 'Please add at least a name'
       redirect_to new_process_step_path
 
       # if all fields are filled out but measurement is invalid
     elsif @process_step.name.present? && @process_step.description.present? && @process_step.position.present? && !parameter_validator(@parameter)
-      flash[:error] = "Wrong or missing measurement parameter"
+      flash[:error] = 'Wrong or missing measurement parameter'
       redirect_to new_process_step_path
 
       # if measurement is invalid
     elsif !parameter_validator(@parameter)
-      flash[:error] = "Wrong or missing measurement parameter"
+      flash[:error] = 'Wrong or missing measurement parameter'
       redirect_to new_process_step_path
     else
       @process_step.save
@@ -55,18 +56,18 @@ class ProcessStepsController < ApplicationController
     @process_step.destroy
 
     respond_to do |format|
-     format.html { redirect_to process_steps_path }
-     format.json { head :no_content }
-     format.js   { render :layout => false }
+      format.html { redirect_to process_steps_path }
+      format.json { head :no_content }
+      format.js   { render layout: false }
     end
   end
 
   def frontend
     @process_steps = ProcessStep.all
     respond_to do |format|
-      format.js {
+      format.js do
         render :frontend
-      }
+      end
       format.html
     end
   end
@@ -78,9 +79,8 @@ class ProcessStepsController < ApplicationController
   end
 
   def parameter_validator(parameter)
-
     if !parameter.measurement.nil? && parameter.measurement > -5.0 && parameter.measurement < 50.3
-      return true
+      true
     else
       false
     end
