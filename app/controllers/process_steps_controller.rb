@@ -51,6 +51,14 @@ class ProcessStepsController < ApplicationController
   end
 
   def destroy
+    @process_step = ProcessStep.find(params[:id])
+    @process_step.destroy
+
+    respond_to do |format|
+     format.html { redirect_to process_steps_path }
+     format.json { head :no_content }
+     format.js   { render :layout => false }
+    end
   end
 
   def frontend
