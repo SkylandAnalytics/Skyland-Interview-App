@@ -6,6 +6,8 @@ require_relative '../config/environment'
 # Previous content of test helper now starts here
 
 require 'rails/test_help'
+require 'minitest/autorun'
+require 'minitest/pride'
 require "minitest/rails/capybara"
 
 class ActiveSupport::TestCase
