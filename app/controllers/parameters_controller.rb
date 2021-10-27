@@ -9,15 +9,18 @@ class ParametersController < ApplicationController
   end
 
   def new
-
   end
 
   def create
-    @parameter = Parameter.create(process_step_id: params[:process_step_id], measurement: params[:measurement])
+    process_step_id = params[:process_step_id]
 
-    @parameter.save
-
-    redirect_to process_steps_path
+    if maximum_measurement_threshold(process_step_id) > params[:measurement].to_f
+      @parameter = Parameter.create(process_step_id: process_step_id, measurement: params[:measurement])
+      redirect_to process_steps_path
+    else
+      flash[:error] = "Check measurement threshold guidelines"
+      redirect_to process_steps_path
+    end
   end
 
   def update
@@ -30,5 +33,15 @@ class ParametersController < ApplicationController
 
   def parameters_params
     params.require(:parameter).permit(:measurement)
+  end
+
+  def maximum_measurement_threshold(process_step_id)
+    corresponding_process_step = ProcessStep.find_by(id: process_step_id)
+
+    highest_existing_parameter = corresponding_process_step.parameters.max_by do |parameter|
+      parameter.measurement
+    end
+
+    highest_existing_parameter.measurement
   end
 end
