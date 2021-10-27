@@ -2,6 +2,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col">Name</th>
         <th scope="col" class="col col-lg-4">Description</th>
         <th scope="col">Position</th>
@@ -11,6 +12,7 @@
 
       <% @process_steps.each do |process_step| %>
         <tr>
+          <th scope="row"><%= link_to "Edit", edit_process_step_path(process_step)  %></th>
           <th scope="row"><%= link_to process_step.name, process_step_path(process_step)  %></th>
           <td><%= process_step.description %></td>
           <td><%= process_step.position %></td>
@@ -33,7 +35,7 @@
     </thead>
     <tbody>
 
-      <a href="/process_steps/new" class="btn btn-success" role="button">Create Process Step</a>
+      <a href="/process_steps/new" class="btn btn-success" role="button">Create Processs Step</a>
 
 
 </ul>

@@ -19,7 +19,7 @@ class ProcessStepsController < ApplicationController
     if @process_step.name.present? && @process_step.description.present? && @process_step.position.present? && params[:process_step][:measurement].empty?
       flash[:error] = "You must fill in measurements"
       redirect_to new_process_step_path
-      
+
     elsif parameter_validator(@parameter) && !@process_step.name.present?
       flash[:error] = "Please add at least a name"
       redirect_to new_process_step_path
@@ -39,8 +39,15 @@ class ProcessStepsController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @process_step = ProcessStep.find(params[:id])
+  end
 
+  def update
+    @process_step = ProcessStep.find(params[:id])
+    @process_step.update(process_step_params)
+
+    redirect_to process_steps_path
   end
 
   def destroy
@@ -69,6 +76,5 @@ class ProcessStepsController < ApplicationController
     else
       false
     end
-
   end
 end
