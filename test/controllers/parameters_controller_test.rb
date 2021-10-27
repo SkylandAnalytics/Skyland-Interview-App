@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ParametersControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @process_step = FactoryBot.create(:process_step)
     @parameter = Parameter.create(measurement: 1.2, process_step_id: @process_step.id)
