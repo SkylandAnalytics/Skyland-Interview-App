@@ -20,15 +20,36 @@ class ParametersController < ApplicationController
     redirect_to process_steps_path
   end
 
-  def update; end
+  def edit
+    @parameter = Parameter.find(params[:id])
+  end
 
-  def destroy; end
+  def update
+    @parameter = Parameter.find(params[:id])
+    new_measurement = params[:parameter][:measurement].to_f
+
+    if new_measurement < maximum_measurement_threshold(params[:process_step_id]) && new_measurement < 50.3 && new_measurement > -5.0
+      @parameter.update(measurement: new_measurement)
+      redirect_to process_steps_path
+    else
+      flash[:error] = 'Invalid new measurement'
+      redirect_to edit_process_step_parameter_path
+    end
+  end
+
+  def destroy
+    @parameter = Parameter.find(params[:id])
+    process_step = ProcessStep.find(params[:process_step_id])
+    if process_step.parameters.count > 1
+      @parameter.destroy
+      redirect_to process_steps_path
+    else
+      flash[:error] = 'Process step must have at least one measurement'
+      redirect_to edit_process_step_parameter_path
+    end
+  end
 
   private
-
-  def parameters_params
-    params.require(:parameter).permit(:measurement)
-  end
 
   def maximum_measurement_threshold(process_step_id)
     corresponding_process_step = ProcessStep.find_by(id: process_step_id)
