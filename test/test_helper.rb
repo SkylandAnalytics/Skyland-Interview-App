@@ -6,6 +6,7 @@ require_relative '../config/environment'
 # Previous content of test helper now starts here
 
 require 'rails/test_help'
+require "minitest/rails/capybara"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
