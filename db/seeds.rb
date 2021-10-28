@@ -5,9 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ProcessStep.destroy_all
+Parameter.destroy_all
 
-ProcessStep.create(name: "Process 1", description: "this is a description example for the process step model. The process step that this text for is: Process Step 1", position: 1)
-ProcessStep.create(name: "Process 2", description: "this is a description example for the process step model. The process step that this text for is: Process Step 2", position: 2)
-ProcessStep.create(name: "Process 3", description: "this is a description example for the process step model. The process step that this text for is: Process Step 3", position: 3)
-ProcessStep.create(name: "Process 4", description: "this is a description example for the process step model. The process step that this text for is: Process Step 4", position: 4)
-ProcessStep.create(name: "Process 5", description: "this is a description example for the process step model. The process step that this text for is: Process Step 5", position: 5)
+process_step1 = FactoryBot.create(:process_step)
+process_step2 = FactoryBot.create(:process_step)
+process_step3 = FactoryBot.create(:process_step)
+process_step4 = FactoryBot.create(:process_step)
+
+FactoryBot.create(:parameter, process_step_id: process_step1.id)
+FactoryBot.create(:parameter, process_step_id: process_step2.id)
+FactoryBot.create(:parameter, process_step_id: process_step3.id)
+FactoryBot.create(:parameter, process_step_id: process_step3.id)
+FactoryBot.create(:parameter, process_step_id: process_step4.id)

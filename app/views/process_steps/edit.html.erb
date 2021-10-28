@@ -1,0 +1,10 @@
+<h3>Edit Process Step Details</h3>
+<%= form_with(model: @process_step, url: process_step_path, method: :patch, local: true) do |f| %>
+  <%= f.text_field :name, :value => @process_step.name %>
+  <%= f.label :name, "Name" %><br>
+  <%= f.text_field :description, :value => @process_step.description %>
+  <%= f.label :description, "Description" %><br>
+  <%= f.number_field :position, :value => @process_step.position %>
+  <%= f.label :position, "Position" %><br>
+  <%= f.submit "Submit" %>
+<% end %>

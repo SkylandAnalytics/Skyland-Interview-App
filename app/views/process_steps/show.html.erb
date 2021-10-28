@@ -1,0 +1,7 @@
+<h2><%= @process_step.name %></h2>
+<b>Description: </b><%= @process_step.description %><br>
+<b>Position: </b><%= @process_step.position %><br>
+<b>Measurements: </b><% @process_step.parameters.each do |parameter| %>
+  <%= link_to parameter.measurement.round(1), edit_process_step_parameter_path(@process_step, parameter) %>
+<% end %>
+<br>

@@ -1,0 +1,13 @@
+<h3>New Process Step</h3>
+<%= form_with model: @process_step, local: true do |f|%>
+
+  <%= f.text_field :name %>
+  <%= f.label :name, "Name" %><br>
+  <%= f.text_field :description %>
+  <%= f.label :description, "Description" %><br>
+  <%= f.text_field :position %>
+  <%= f.label :position, "Position" %><br>
+  <%= f.text_field :measurement %>
+  <%= f.label :measurement, "Measurement" %><br>
+  <%= f.submit "Save" %>
+<% end %>
