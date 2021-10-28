@@ -16,21 +16,18 @@ class ProcessStepsController < ApplicationController
     @parameter = Parameter.create(process_step_id: @process_step.id, measurement: params[:process_step][:measurement])
     @process_step.parameters << @parameter if parameter_validator(@parameter)
 
-    # if all fields are filled out but measurement is missing
-    if @process_step.name.present? && @process_step.description.present? && @process_step.position.present? && params[:process_step][:measurement].empty?
-      flash[:error] = 'You must fill in measurements'
-      redirect_to new_process_step_path
-
-    elsif parameter_validator(@parameter) && !@process_step.name.present?
+    if parameter_validator(@parameter) && !@process_step.name.present?
       flash[:error] = 'Please add at least a name'
       redirect_to new_process_step_path
 
-      # if all fields are filled out but measurement is invalid
-    elsif @process_step.name.present? && @process_step.description.present? && @process_step.position.present? && !parameter_validator(@parameter)
+    elsif  process_step_filled_out(@process_step) && params[:process_step][:measurement].empty?
+        flash[:error] = 'You must fill in measurements'
+        redirect_to new_process_step_path
+
+    elsif process_step_filled_out(@process_step) && !parameter_validator(@parameter)
       flash[:error] = 'Wrong or missing measurement parameter'
       redirect_to new_process_step_path
 
-      # if measurement is invalid
     elsif !parameter_validator(@parameter)
       flash[:error] = 'Wrong or missing measurement parameter'
       redirect_to new_process_step_path
@@ -79,10 +76,10 @@ class ProcessStepsController < ApplicationController
   end
 
   def parameter_validator(parameter)
-    if !parameter.measurement.nil? && parameter.measurement > -5.0 && parameter.measurement < 50.3
-      true
-    else
-      false
-    end
+    !parameter.measurement.nil? && parameter.measurement > -5.0 && parameter.measurement < 50.3 ? true : false
+  end
+
+  def process_step_filled_out(process_step)
+    process_step.name.present? && process_step.description.present? && process_step.position.present?
   end
 end
